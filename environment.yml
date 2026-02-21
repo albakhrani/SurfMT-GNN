@@ -1,0 +1,57 @@
+name: surfmt-gnn
+channels:
+  - pytorch
+  - pyg
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python
+  - python=3.9
+  
+  # PyTorch (CUDA 11.8)
+  - pytorch=2.0.1
+  - pytorch-cuda=11.8
+  - torchvision
+  - torchaudio
+  
+  # PyTorch Geometric
+  - pyg=2.3.0
+  - torch-scatter
+  - torch-sparse
+  
+  # Chemistry
+  - rdkit=2022.09.5
+  
+  # Data Science
+  - numpy=1.24
+  - pandas=2.0
+  - scikit-learn=1.2
+  - scipy=1.10
+  
+  # Visualization
+  - matplotlib=3.7
+  - seaborn=0.12
+  
+  # Utilities
+  - pyyaml=6.0
+  - tqdm
+  - joblib
+  
+  # Jupyter
+  - jupyterlab=4.0
+  - ipywidgets
+  
+  # Testing
+  - pytest=7.3
+  
+  # Pip dependencies
+  - pip
+  - pip:
+    - wandb>=0.15.0
+    - hydra-core>=1.3.0
+    - tensorboard>=2.13.0
+
+# To create environment:
+# conda env create -f environment.yml
+# conda activate surfmt-gnn

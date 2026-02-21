@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "SurfMT-GNN: Multi-Task Graph Neural Networks for Comprehensive Surfactant Property Prediction"
+version: 1.0.0
+date-released: 2026-02-21
+url: "https://github.com/albakhrani/SurfMT-GNN"
+repository-code: "https://github.com/albakhrani/SurfMT-GNN"
+license: MIT
+type: software
+authors:
+  - family-names: "Al-Futini"
+    given-names: "Abdulhakim Nasser Ali"
+    affiliation: "School of Earth Science and Resources, Chang'an University, Xi'an, China"
+  - family-names: "Huang"
+    given-names: "Hexin"
+    affiliation: "School of Earth Science and Resources, Chang'an University, Xi'an, China"
+    email: "hx.huang@outlook.com"
+  - family-names: "AL-Bakhrani"
+    given-names: "Ali A."
+    affiliation: "School of Software, Dalian University of Technology, Dalian, China"
+keywords:
+  - graph neural networks
+  - surfactants
+  - multi-task learning
+  - molecular property prediction
+  - machine learning
+  - cheminformatics
+  - critical micelle concentration
+  - deep learning
+abstract: >-
+  SurfMT-GNN is a multi-task graph neural network framework for 
+  simultaneous prediction of six key surfactant properties: 
+  critical micelle concentration (pCMC), surface tension at CMC, 
+  maximum surface excess, minimum molecular area, surface pressure 
+  at CMC, and surfactant efficiency. The model integrates AttentiveFP 
+  graph encoding, learned temperature embedding, and expert-selected 
+  molecular descriptors through a shared representation layer.
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Al-Futini"
+      given-names: "Abdulhakim Nasser Ali"
+    - family-names: "Huang"
+      given-names: "Hexin"
+    - family-names: "AL-Bakhrani"
+      given-names: "Ali A."
+  title: "Multi-Task Graph Neural Networks for Comprehensive Surfactant Property Prediction"
+  journal: "Journal of Chemical Information and Modeling"
+  year: 2026
+  publisher:
+    name: "American Chemical Society"
