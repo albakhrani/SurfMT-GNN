@@ -346,7 +346,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions or issues, please:
 1. Open an issue on GitHub
-2. Contact: hx.huang@outlook.com
+2. Contact: albakhrani2017@gmail.com
 
 ---
 
