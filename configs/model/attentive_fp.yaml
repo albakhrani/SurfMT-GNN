@@ -1,0 +1,23 @@
+# AttentiveFP Model Configuration
+# UPDATED: Based on Hödl et al. 2025 (SurfPro) optimal settings
+model:
+  name: "AttentiveFP"
+
+  # Graph Encoder - Hödl et al. 2025 optimal settings
+  encoder:
+    node_feat_dim: 39        # RDKit atom features
+    edge_feat_dim: 10        # RDKit bond features
+    hidden_dim: 96           # CHANGED from 256 (Hödl's optimal)
+    num_layers: 2            # CHANGED from 3 (Hödl's optimal)
+    num_timesteps: 2         # Attention timesteps
+    dropout: 0.1             # CHANGED from 0.2 (Hödl's optimal)
+
+  # Task-specific heads
+  heads:
+    hidden_dim: 64           # CHANGED from 128 (match encoder)
+    num_layers: 2
+    dropout: 0.1
+
+  # Auxiliary features
+  use_temperature: true
+  use_surfactant_type: true

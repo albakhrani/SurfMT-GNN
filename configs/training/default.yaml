@@ -1,0 +1,32 @@
+# Training Configuration
+# UPDATED: Based on Hödl et al. 2025 optimal settings
+training:
+  # Optimization
+  optimizer: "AdamW"
+  learning_rate: 0.001
+  weight_decay: 0.00001        # CHANGED from 0.0001 (Hödl used 1e-5)
+  scheduler: "ReduceLROnPlateau"
+  scheduler_patience: 20       # CHANGED from 10
+  scheduler_factor: 0.5
+
+  # Training loop
+  epochs: 300
+  batch_size: 32
+  early_stopping_patience: 60  # CHANGED from 30 (Hödl used ~60)
+  gradient_clip: 1.0
+
+  # Multi-task
+  task_weights:
+    pCMC: 1.0
+    AW_ST_CMC: 1.0
+    Gamma_max: 1.0
+    Area_min: 1.0
+    Pi_CMC: 1.0
+    pC20: 1.0
+
+  # Loss
+  loss_function: "masked_mse"
+
+  # Reproducibility
+  seed: 42
+  deterministic: true

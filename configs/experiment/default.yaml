@@ -1,0 +1,31 @@
+# Experiment Configuration
+experiment:
+  name: "mtl_attentive_fp"
+  description: "Multi-task AttentiveFP for 6 surfactant properties"
+  
+  # Data
+  data:
+    train_path: "data/processed/train.pt"
+    test_path: "data/processed/test.pt"
+    cv_folds: 10
+    
+  # Model
+  model_config: "configs/model/attentive_fp.yaml"
+  
+  # Training
+  training_config: "configs/training/default.yaml"
+  
+  # Output
+  output_dir: "experiments/mtl_shared_encoder"
+  save_predictions: true
+  save_embeddings: true
+  
+  # Logging
+  wandb:
+    project: "surfpro-mtl-gnn"
+    entity: null
+    tags: ["mtl", "gnn", "surfactant"]
+    
+  # Hardware
+  device: "cuda"
+  num_workers: 4
