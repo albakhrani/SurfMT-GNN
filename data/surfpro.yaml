@@ -1,0 +1,176 @@
+# =============================================================================
+# SurfPro Data Configuration
+# =============================================================================
+# Configuration for SurfPro dataset preprocessing and loading.
+#
+# Author: Al-Futini Abdulhakim Nasser Ali
+# Target Journal: Journal of Chemical Information and Modeling (JCIM)
+# =============================================================================
+
+data:
+  # Dataset name and version
+  name: "SurfPro"
+  version: "1.0"
+
+  # Directory paths
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  splits_dir: "data/splits"
+
+  # Raw file names
+  train_file: "surfpro_train.csv"
+  test_file: "surfpro_test.csv"
+  literature_file: "surfpro_literature.csv"
+
+  # =============================================================================
+  # Feature Dimensions
+  # =============================================================================
+  features:
+    # Atom features (34 total)
+    atom_feat_dim: 34
+    atom_features:
+      atom_type: 10        # C, N, O, S, P, F, Cl, Br, I, Other
+      degree: 7            # 0-6
+      formal_charge: 5     # -2 to +2
+      hybridization: 5     # SP, SP2, SP3, SP3D, SP3D2
+      aromaticity: 1       # binary
+      ring_membership: 1   # binary
+      num_hs: 5           # 0-4
+
+    # Bond features (12 total)
+    bond_feat_dim: 12
+    bond_features:
+      bond_type: 4         # single, double, triple, aromatic
+      conjugated: 1        # binary
+      in_ring: 1           # binary
+      stereo: 6           # none, E, Z, CIS, TRANS, ANY
+
+    # Global molecular descriptors (6 total)
+    global_feat_dim: 6
+    global_features:
+      - mol_weight        # normalized by 500
+      - logp              # raw value
+      - tpsa              # normalized by 100
+      - num_rotatable     # normalized by 10
+      - num_hbd           # normalized by 5
+      - num_hba           # normalized by 10
+
+  # =============================================================================
+  # Target Properties
+  # =============================================================================
+  targets:
+    num_tasks: 6
+    task_names:
+      - "pCMC"            # Critical micelle concentration (-log₁₀M)
+      - "AW_ST_CMC"       # Surface tension at CMC (mN/m)
+      - "Gamma_max"       # Maximum surface excess (μmol/m²)
+      - "Area_min"        # Minimum area per molecule (Ų)
+      - "Pi_CMC"          # Surface pressure at CMC (mN/m)
+      - "pC20"            # Surfactant efficiency (-log₁₀M)
+
+    # Task descriptions for documentation
+    task_descriptions:
+      pCMC: "Critical micelle concentration"
+      AW_ST_CMC: "Surface tension at CMC"
+      Gamma_max: "Maximum surface excess"
+      Area_min: "Minimum area per molecule"
+      Pi_CMC: "Surface pressure at CMC"
+      pC20: "Surfactant efficiency (concentration for 20 mN/m reduction)"
+
+    # Expected units
+    task_units:
+      pCMC: "-log₁₀M"
+      AW_ST_CMC: "mN/m"
+      Gamma_max: "μmol/m²"
+      Area_min: "Ų"
+      Pi_CMC: "mN/m"
+      pC20: "-log₁₀M"
+
+  # =============================================================================
+  # Surfactant Classes
+  # =============================================================================
+  surfactant_classes:
+    - "anionic"
+    - "cationic"
+    - "non-ionic"
+    - "zwitterionic"
+    - "gemini cationic"
+    - "sugar-based non-ionic"
+    - "gemini anionic"
+    - "gemini zwitterionic"
+
+  # =============================================================================
+  # Cross-Validation Settings
+  # =============================================================================
+  cross_validation:
+    n_folds: 10
+    seed: 42
+    stratify_by: "surfactant_class"  # Stratify by surfactant type
+
+  # =============================================================================
+  # Data Loading
+  # =============================================================================
+  dataloader:
+    batch_size: 32
+    num_workers: 4
+    pin_memory: true
+    drop_last: false
+    shuffle_train: true
+    shuffle_val: false
+    shuffle_test: false
+
+  # =============================================================================
+  # Featurization Options
+  # =============================================================================
+  featurization:
+    add_self_loops: false
+    include_global_features: true
+    include_hydrogen: false
+
+  # =============================================================================
+  # Target Scaling - UPDATED based on Hödl et al. 2025
+  # =============================================================================
+  scaling:
+    method: "robust"  # CHANGED from zscore (Hödl: RobustScaler is essential for multi-property)
+    fit_on: "train"   # Fit only on training data
+    save_path: "data/processed/target_scaler.json"
+
+  # =============================================================================
+  # Data Augmentation (Training Only)
+  # =============================================================================
+  augmentation:
+    enabled: true
+    noise:
+      enabled: false
+      std: 0.01
+      prob: 0.5
+    random_mask:
+      enabled: false
+      prob: 0.1
+      min_unmasked: 1
+
+  # =============================================================================
+  # Expected Dataset Statistics (from exploration)
+  # =============================================================================
+  expected_stats:
+    train_samples: 1484
+    test_samples: 140
+    total_unique_smiles: 1624
+
+    # Missing value percentages (approximate)
+    missing_percentages:
+      pCMC: 14.1
+      AW_ST_CMC: 40.1
+      Gamma_max: 58.6
+      Area_min: 58.3
+      Pi_CMC: 54.2
+      pC20: 59.5
+
+    # Class distribution (approximate)
+    class_distribution:
+      gemini_cationic: 36.2
+      non_ionic: 20.0
+      cationic: 19.5
+      anionic: 14.7
+      sugar_based_non_ionic: 6.2
+      zwitterionic: 2.2
