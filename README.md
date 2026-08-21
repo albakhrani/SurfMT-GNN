@@ -251,9 +251,9 @@ print(f"Uncertainty: {predictions['uncertainty']:.3f}")
 
 This work uses the **SurfPro database** from:
 
-> Hödl, M.F., Nigam, A., Tropsha, A., & Aspuru-Guzik, A. (2025). SurfPro: Functional Property Prediction for Surfactants Using a Foundation Model Approach. *Digital Discovery*, 4(1), 102-115.
+> Hödl, Stefan L., Luc Hermans, Pim F. J. Dankloff, Aigars Piruska, Wilhelm T. S. Huck, and William E. Robinson. ‘SurfPro – a Curated Database and Predictive Model of Experimental Properties of Surfactants’. Digital Discovery 4, no. 5 (2025): 1176–87. https://doi.org/10.1039/D4DD00393D.
 
-**Original dataset**: https://github.com/Hodlwolf/SurfPro
+**Original dataset**: https://github.com/BigChemistry-RobotLab/SurfPro
 
 ### Dataset Statistics
 
@@ -305,24 +305,25 @@ If you use this code in your research, please cite:
 @article{alfutini2026surfmtgnn,
   title={Multi-Task Graph Neural Networks for Comprehensive Surfactant Property Prediction},
   author={Al-Futini, Abdulhakim Nasser Ali and Huang, Hexin and AL-Bakhrani, Ali A.},
-  journal={Journal of Chemical Information and Modeling},
+  journal={Digital Discovery},
   year={2026},
-  publisher={American Chemical Society}
+  publisher={Royal Society of Chemistry}
+  doi={10.1039/d6dd00135a}
 }
 ```
 
 Also cite the SurfPro dataset:
 
 ```bibtex
-@article{hodl2025surfpro,
-  title={SurfPro: Functional Property Prediction for Surfactants Using a Foundation Model Approach},
-  author={H{\"o}dl, Martin F. and Nigam, AkshatKumar and Tropsha, Alexander and Aspuru-Guzik, Al{\'a}n},
+@article{hoedl2025,
+  title={{{SurfPro}} – a Curated Database and Predictive Model of Experimental Properties of Surfactants},
+  author={Hödl, Stefan L. and Hermans, Luc and Dankloff, Pim F. J. and Piruska, Aigars and Huck, Wilhelm T. S. and Robinson, William E.},
   journal={Digital Discovery},
   volume={4},
-  number={1},
-  pages={102--115},
+  number={5},
+  pages={1176--1187},
   year={2025},
-  doi={10.1039/D4DD00219A}
+  doi={10.1039/D4DD00393D},
 }
 ```
 
